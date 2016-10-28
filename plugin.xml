@@ -8,14 +8,15 @@
       <engine name="cordova-android" version=">=4.0.0" />
       <engine name="cordova-ios" version=">=4.0.0" />
   </engines>
-
-  <dependency id="com.outsystems.plugins.loader"/>
-
+ 
   <js-module name="OSDebugLogs" src="www/OSDebugLogs.js">
     <clobbers target="cordova.plugins.OSDebugLogs"/>
   </js-module>
   
   <platform name="android">
+
+    <dependency id="com.outsystems.plugins.loader"/>
+
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSDebugLogs">
           <param name="android-package" value="com.outsystems.plugins.debug.OSDebugLogs"/>
@@ -35,14 +36,21 @@
 
   <platform name="ios">
 
-  <config-file parent="/*" target="config.xml">
-    <feature name="OSDebugLogs">
-      <param name="ios-package" value="OSDebugLogs"/>
-      <param name="onload" value="true" />
-    </feature>
-  </config-file>
+    <dependency id="cordova-plugin-console" url="https://github.com/luissilvaos/cordova-plugin-console#outsystems"/>
 
-  <source-file src="src/ios/CDVOSDebugLogs.m"/>
+    <config-file parent="/*" target="config.xml">
+      <feature name="OSDebugLogs">
+        <param name="ios-package" value="OSDebugLogs"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/ios/OSDebugLogs.h"/>
+    <source-file src="src/ios/OSDebugLogs.m"/>
+
+    <source-file src="src/ios/OSConsole/OSConsole.xib"/>
+    <source-file src="src/ios/OSConsole/OSConsoleViewController.h"/>
+    <source-file src="src/ios/OSConsole/OSConsoleViewController.m"/>
 
   </platform>
 

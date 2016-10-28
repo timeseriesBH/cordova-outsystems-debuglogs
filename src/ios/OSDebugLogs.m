@@ -1,26 +1,54 @@
-/********* OSDebugLogs.m Cordova Plugin Implementation *******/
+#import "OSDebugLogs.h"
+#import "OSConsoleViewController.h"
 
-#import <Cordova/CDV.h>
+@interface OSDebugLogs()
+ 
+ @property (strong, nonatomic) OSConsoleViewController* osConsoleVC;
 
-@interface OSDebugLogs : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
 @end
 
 @implementation OSDebugLogs
 
+
+-(void)pluginInitialize{
+    
+    _osConsoleVC = [[OSConsoleViewController alloc] initWithParent:self.viewController];
+
+}
+
+
 - (void)openConsole:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+	CDVPluginResult* pluginResult = nil;
+	if(_osConsoleVC){
+
+		[_osConsoleVC openConsoleAnimated:YES];
+
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+	}
+	else{
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];	
+	}
+
+    
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)closeConsole:(CDVInvokedUrlCommand*)command
 {
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    CDVPluginResult* pluginResult = nil;
+	if(_osConsoleVC){
+
+		[_osConsoleVC hideConsoleAnimated:YES];
+
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+	}
+	else{
+		pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];	
+	}
+
+    
     
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
