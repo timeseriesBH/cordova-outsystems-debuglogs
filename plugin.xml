@@ -17,7 +17,7 @@
   <dependency id="cordova-plugin-console" url="https://github.com/luissilvaos/cordova-plugin-console#outsystems"/>
 
   <platform name="android">    
-    <config-file parent="/*" target="res/xml/config.xml">
+    <config-file parent="/*" target="config.xml">
       <feature name="OSDebugLogs">
           <param name="android-package" value="com.outsystems.plugins.debug.OSDebugLogs"/>
           <param name="onload" value="true" />
