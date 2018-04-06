@@ -13,10 +13,10 @@
     <clobbers target="cordova.plugins.OSDebugLogs"/>
   </js-module>
   
-  <platform name="android">
+  <dependency id="com.outsystems.plugins.loader"/>
+  <dependency id="cordova-plugin-console" url="https://github.com/luissilvaos/cordova-plugin-console#outsystems"/>
 
-    <dependency id="com.outsystems.plugins.loader"/>
-
+  <platform name="android">    
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSDebugLogs">
           <param name="android-package" value="com.outsystems.plugins.debug.OSDebugLogs"/>
@@ -35,9 +35,6 @@
   </platform>
 
   <platform name="ios">
-
-    <dependency id="cordova-plugin-console" url="https://github.com/luissilvaos/cordova-plugin-console#outsystems"/>
-
     <config-file parent="/*" target="config.xml">
       <feature name="OSDebugLogs">
         <param name="ios-package" value="OSDebugLogs"/>
