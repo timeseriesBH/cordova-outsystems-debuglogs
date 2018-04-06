@@ -7,21 +7,19 @@ import android.webkit.ConsoleMessage;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.outsystems.plugins.debug.console.OSConsole;
+import com.outsystems.plugins.loader.CordovaLoaderChromeClient;
+
 import org.apache.cordova.BuildConfig;
+import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.PluginManager;
 import org.apache.cordova.PluginResult;
 import org.apache.cordova.engine.SystemWebView;
 import org.apache.cordova.engine.SystemWebViewEngine;
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import com.outsystems.plugins.debug.console.OSConsole;
-import com.outsystems.plugins.loader.CordovaLoaderChromeClient;
-import com.outsystems.plugins.loader.OSCordovaLoader;
 
 public class OSDebugLogs extends CordovaPlugin {
 
@@ -37,9 +35,6 @@ public class OSDebugLogs extends CordovaPlugin {
 
 		SystemWebViewEngine webViewEngine = (SystemWebViewEngine)this.webView.getEngine();
 		SystemWebView systemWebView = (SystemWebView)webViewEngine.getView();
-
-		PluginManager pm = webView.getPluginManager();
-		OSCordovaLoader osCordovaLoader = (OSCordovaLoader) pm.getPlugin("OSCordovaLoader");
 
 		OSDebugLogsChromeClient chromeClient = new OSDebugLogsChromeClient(webViewEngine,this.cordova);
 		
@@ -65,14 +60,14 @@ public class OSDebugLogs extends CordovaPlugin {
                 RelativeLayout consoleViewGroup = new RelativeLayout(cordovaActivity);
                 RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                 consoleViewGroup.setLayoutParams(params);
-                consoleViewGroup.setId(2001);
+                consoleViewGroup.setId(2016);
                 consoleViewGroup.setVisibility(View.GONE);
 
-                rootView.addView(consoleViewGroup);
+                rootView.addView(consoleViewGroup, 0);
                 rootView.invalidate();
 
                 setConsoleViewGroup(consoleViewGroup);
-
+                mOsConsole = new OSConsole(cordova.getActivity(), getConsoleViewGroup());
             }
         });
 
