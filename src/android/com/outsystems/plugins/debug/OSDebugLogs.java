@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.outsystems.plugins.debug.console.OSConsole;
-import com.outsystems.plugins.loader.CordovaLoaderChromeClient;
+import com.outsystems.plugins.loader.clients.ChromeClient;
 
 import org.apache.cordova.BuildConfig;
 import org.apache.cordova.CallbackContext;
@@ -157,7 +157,7 @@ public class OSDebugLogs extends CordovaPlugin {
     }
 
 
-    private class OSDebugLogsChromeClient extends CordovaLoaderChromeClient {
+    private class OSDebugLogsChromeClient extends ChromeClient {
 
         public OSDebugLogsChromeClient(SystemWebViewEngine parentEngine, CordovaInterface cordovaInterface) {
             super(parentEngine, cordovaInterface);
