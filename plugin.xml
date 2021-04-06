@@ -13,7 +13,7 @@
     <clobbers target="cordova.plugins.OSDebugLogs"/>
   </js-module>
   
-  <dependency id="com.outsystems.plugins.loader"/>
+  <!--<dependency id="com.outsystems.plugins.loader"/>-->
   <dependency id="cordova-plugin-console" url="https://github.com/luissilvaos/cordova-plugin-console#outsystems"/>
 
   <platform name="android">    
